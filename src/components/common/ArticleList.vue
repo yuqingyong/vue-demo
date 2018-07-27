@@ -31,7 +31,7 @@
         </article>
         <ul class="pagination">
             <li><a href="javascript:;" @click="prePage">&laquo;</a></li>
-            <li :class="[item==current_page ? 'active' : '']" v-for="(item) in pageNum" @click="curPage(item)"><a href="javascript:;">{{item}}</a></li>
+            <li :class="[item==temp_page ? 'active' : '']" v-for="(item) in pageNum" @click="curPage(item)"><a href="javascript:;">{{item}}</a></li>
             <li><a href="javascript:;" @click="nextPage">&raquo;</a></li>
         </ul>
 	</div>
@@ -43,14 +43,28 @@
 	export default{
         created(){
             // 请求文章列表数据  
-            this.$store.dispatch('getArticleList',{'cid':this.cid,'tid':this.tid,'page':this.current_page});
+            this.$store.dispatch('getArticleList',{'cid':this.temp_cid,'tid':this.temp_tid,'page':this.temp_page});
         },
         data(){
             return {
-                current_page:1,
-                cid:'all',
-                tid:'all'
+              temp_cid:this.cid,  
+              temp_tid:this.tid,  
+              temp_page:this.page,  
             }
+        },
+        props: {
+          cid:{
+            type:String,
+            require:true
+          },
+          tid:{
+            type:String,
+            require:true
+          },
+          page:{
+            type:Number,
+            default:1
+          }
         },
         computed:{
             ...mapGetters([
@@ -65,29 +79,30 @@
                         return Math.floor(total/10) + 1;
                     }
                 }
-            }
+            },
+
         },
         methods:{
             nextPage(){
-                if(this.current_page < this.pageNum){
-                    this.current_page++;
-                    this.$store.dispatch('getArticleList',{'cid':this.cid,'tid':this.tid,'page':this.current_page});
+                if(this.temp_page < this.pageNum){
+                    this.temp_page++;
+                    this.$store.dispatch('getArticleList',{'cid':this.temp_cid,'tid':this.temp_tid,'page':this.temp_page});
                 }else{
                     console.log('已经是最后一页了')
                 }
             },
             prePage(){
-                if(this.current_page > 1){
-                    this.current_page--;
-                    this.$store.dispatch('getArticleList',{'cid':this.cid,'tid':this.tid,'page':this.current_page});
+                if(this.temp_page > 1){
+                    this.temp_page--;
+                    this.$store.dispatch('getArticleList',{'cid':this.temp_cid,'tid':this.temp_tid,'page':this.temp_page});
                 }else{
                     console.log('已经是第一页了')
                 }
             },
             curPage(p){
-                if(p!=this.current_page){
-                    this.current_page=p;
-                    this.$store.dispatch('getArticleList',{'cid':this.cid,'tid':this.tid,'page':this.current_page});
+                if(p!=this.temp_page){
+                    this.temp_page=p;
+                    this.$store.dispatch('getArticleList',{'cid':this.temp_cid,'tid':this.temp_tid,'page':this.temp_page});
                 }else{
                     console.log('已处于当前页')
                 }

@@ -9,6 +9,7 @@ import Message from '../components/Message.vue'
 import Release from '../components/Release.vue'
 import Share from '../components/Share.vue'
 import Chat from '../components/Chat.vue'
+import SearchArticle from '../components/SearchArticle.vue'
 
 Vue.use(Router)
 
@@ -27,30 +28,34 @@ export default new Router({
                     component:ArticleDetail
                 },
                 {
-                    path:'jishu/:cid',
+                    path:'jishu',
                     component:Jishu
                 },
                 {
-                    path:'news/:cid',
+                    path:'news',
                     component:News
                 }
             ]
         },
         {
-  			path:'/share',
-  			component:Share
+    			path:'/share',
+    			component:Share
   	    },
   	    {
-  			path:'/release',
-  			component:Release
+    			path:'/release',
+    			component:Release
   	    },
   	    {
-  			path:'/message',
-  			component:Message
+    			path:'/message',
+    			component:Message
   	    },
   	    {
-  			path:'/chat',
-  			component:Chat
+    			path:'/chat',
+    			component:Chat
   	    },
+        {
+          path:'/searchArticle/:keyword',
+          component:SearchArticle
+        },
   	]
 })

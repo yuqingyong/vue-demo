@@ -10,7 +10,8 @@ const state = {
 		}
 	},
 	hotArticle:{},
-	searchList:{}
+	searchList:{},
+	tags:{}
 }
 
 const getters = {
@@ -22,6 +23,12 @@ const getters = {
 	},
 	hotArticle(state){
 		return state.hotArticle;
+	},
+	tags(state){
+		return state.tags;
+	},
+	searchList(state){
+		return state.searchList;
 	}
 }
 
@@ -59,12 +66,17 @@ const actions = {
 		})
 	},
 	searchArticle({commit,state},param){
-		console.log(param)
 		axios.get('http://127.0.0.1/api/vue/searchArticle?keyword='+param.keyword+'')
 		.then(resp => {
-			console.log(resp.data)
+			commit(types.GET_SEARCH_ARTICLE,resp.data);
 		})
-	}
+	},
+	getTags({commit,state}){
+		axios.get('http://127.0.0.1/api/vue/getTags')
+		.then(resp => {
+			commit(types.GET_TAGS,resp.data);
+		})
+	},
 }
 
 const mutations = {
@@ -76,6 +88,12 @@ const mutations = {
 	},
 	[types.GET_HOTARTICLE](state,data){
 		state.hotArticle = data;
+	},
+	[types.GET_TAGS](state,data){
+		state.tags = data;
+	},
+	[types.GET_SEARCH_ARTICLE](state,data){
+		state.searchList = data;
 	}
 }
 

@@ -24,8 +24,8 @@
 		      <div class="collapse navbar-collapse" id="header-navbar">
 		        <ul class="nav navbar-nav navbar-right" style="margin-top:35px;margin-left:160px;">
 		          <router-link to="/" target="_blank" tag="li"><a data-cont="星辰网络博客" title="星辰网络博客" href="">首页</a></router-link>
-		          <router-link to="/article/news/7" target="_blank" tag="li"><a data-cont="最新资讯" title="最新资讯" href="">最新资讯</a></router-link>
-		          <router-link to="/article/jishu/2" target="_blank" tag="li"><a data-cont="IT技术笔记" title="IT技术笔记" href="">IT技术笔记</a></router-link>
+		          <router-link to="/article/news" target="_blank" tag="li"><a data-cont="最新资讯" title="最新资讯" href="">最新资讯</a></router-link>
+		          <router-link to="/article/jishu" target="_blank" tag="li"><a data-cont="IT技术笔记" title="IT技术笔记" href="">IT技术笔记</a></router-link>
 		          <router-link to="/share" target="_blank" tag="li"><a data-cont="源码分享" title="源码分享" href="">源码分享</a></router-link>
 		          <router-link to="/chat" target="_blank" tag="li"><a data-cont="随心笔记" title="随心笔记" href="" >随心笔记</a></router-link>
 		          <router-link to="/release" target="_blank" tag="li"><a data-cont="需求发布" title="需求发布" href="" >需求发布</a></router-link>

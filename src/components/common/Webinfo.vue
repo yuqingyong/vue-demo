@@ -23,14 +23,14 @@
 	        </div>
 	      </div>
 	      <div class="widget widget_search">
-	        <form class="navbar-form">
+	        <div  class="navbar-form">
 	          <div class="input-group">
 	            <input type="text" v-model="keyword" class="form-control" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off">
 	            <span class="input-group-btn">
-	            <button class="btn btn-default btn-search" @click="searchArticle">搜索</button>
+	            <router-link style="background: #3399CC;border:1px solid #3399cc;" class="btn btn-default btn-search" :to="'/searchArticle/'+keyword" target="_blank" tag="a">搜索</router-link>
+	            <!-- <button class="btn btn-default btn-search">搜索</button> -->
 	            </span> </div>
-
-	        </form>
+	        </div>
 	      </div>
 	    </div>
 	</div>
@@ -45,7 +45,7 @@ export default {
     },
     data(){
     	return {
-    		keyword:''
+    		keyword:'查询的关键词不能为空'
     	}
     },
     computed:{
@@ -54,13 +54,6 @@ export default {
     	])
     },
     methods:{
-    	searchArticle(){
-    		if(this.keyword !== ''){
-    			this.$store.dispatch('searchArticle',{'keyword':this.keyword});
-    		}else{
-    			alert('查询条件不能为空');
-    		}
-    	}
     }
 }
 </script>

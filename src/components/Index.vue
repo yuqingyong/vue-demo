@@ -30,12 +30,7 @@
 		      </div>
 
 		      <!-- 文章列表组件 -->
-		      <article-list></article-list>
-
-		      <nav class="pagination">
-		        <ul>
-		        </ul>
-		      </nav>
+		      <article-list :cid="cid" :tid="tid" :page="page"></article-list>
 		    </div>
 		  </div>
 		  <aside class="sidebar">
@@ -81,6 +76,13 @@ export default {
     },
     created(){
     	this.$store.dispatch('getWebInfo');
+    },
+    data(){
+    	return {
+    		cid:'all',
+    		tid:'all',
+    		page:1
+    	}
     },
     computed:{
     	...mapGetters([
